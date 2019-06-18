@@ -23,6 +23,66 @@
 \usepackage{listings}
 \usepackage{booktabs}
 
+% header/footer
+\renewcommand{\headrulewidth}{0.1pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{gray}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0.0pt}
+\topmargin=-0.65in
+\pagestyle{fancy}\fancyhf{} 
+
+% compiler-specific settings
+% https://tex.stackexchange.com/a/20780
+\usepackage{ifpdf,ifxetex,ifluatex} 
+
+\ifluatex
+    \typeout{ *** using compiler: LuaLaTeX *** ^^J}
+    % patch \typein
+    % see http://tex.stackexchange.com/questions/12435/incompatibilities-between-lualatex-and-typein
+    \makeatletter
+    \def\@xtypein[#1]#2{%
+        \typeout{#2}%
+        \@tempcnta\endlinechar
+        \endlinechar\m@ne
+        \read\@inputcheck to#1%
+        \endlinechar\@tempcnta
+        \@typein}
+    \makeatother 
+    % LuaLaTeX specific code
+    \usepackage{fontspec}
+	\newfontfamily\headerfontlt{ITC Franklin Gothic Std Book}
+	\newfontfamily\headerfont{ITC Franklin Gothic Std Demi}
+	\usepackage[urw-garamond]{mathdesign}
+	\usepackage{garamondx}
+	\usepackage[italic]{mathastext}
+	\newcommand{\printsection}[1]{\normalfont\headerfontlt{{{#1}}}}
+	\newcommand{\printsubsection}[1]{\normalfont\headerfontlt\textcolor{darkgray}{{#1}}}
+	\newcommand{\printsubsubsection}[1]{\normalfont\headerfontlt{{#1}}}
+	\allsectionsfont{\printsection}
+	\sectionfont{\printsection}
+	\subsectionfont{\printsubsection}
+	\subsubsectionfont{\printsubsubsection}
+	\lhead{\headerfontlt{\textcolor{darkgray}{\AUTHOR\ \textcolor{gray}{$\big/$} \CLASSNAME\ \textcolor{gray}{$\big/$}} \TITLE}}
+	\rhead{\headerfontlt{\textcolor{gray}{$\big[$} \thepage\ \textcolor{gray}{$\big/$} \pageref{LastPage} \textcolor{gray}{$\big]$}}}
+	\newcommand{\Partial}[1]{\partial\hspace{-0.2ex}{#1}}
+	% operators
+	\newcommand{\op}[1]{\textrm{\small\printsubsection{\MakeUppercase{#1}}}\,}
+	\newcommand{\opns}[1]{\textrm{\small\printsubsection{\MakeUppercase{#1}}}}
+	\newcommand{\opnslc}[1]{\textrm{\small\printsubsection{{#1}}}}
+
+\else
+    \typeout{ *** using compiler: LaTeX *** ^^J} 
+    \newcommand{\printsection}[1]{\textsf{{#1}}}
+	\newcommand{\printsubsection}[1]{\textsf\textcolor{darkgray}{{#1}}}
+	\newcommand{\printsubsubsection}[1]{\textsf{#1}}
+	\lhead{\textcolor{darkgray}{\AUTHOR\ \textcolor{gray}{$\big/$} \CLASSNAME\ \textcolor{gray}{$\big/$}} \TITLE}
+	\rhead{\textcolor{gray}{$\big[$} \thepage\ \textcolor{gray}{$\big/$} \pageref{LastPage} \textcolor{gray}{$\big]$}}
+	\newcommand{\Partial}[1]{\partial{#1}}
+	% operators
+	\newcommand{\op}[1]{\textsf{\MakeUppercase{#1}}\,}
+	\newcommand{\opns}[1]{\textsf{\MakeUppercase{#1}}}
+	\newcommand{\opnslc}[1]{\textsf{#1}}
+\fi
+
 % colors
 \definecolor{sblue}{HTML}{5292c0}
 \definecolor{sgreen}{HTML}{93c47d}
@@ -33,29 +93,9 @@
 \counterwithin*{equation}{section}
 %\numberwithin{equation}{section}
 
-% fonts
-\usepackage{fontspec}
-\newfontfamily\headerfontlt{ITC Franklin Gothic Std Book}
-\newfontfamily\headerfont{ITC Franklin Gothic Std Demi}
-\usepackage[urw-garamond]{mathdesign}
-\usepackage{garamondx}
-\usepackage[italic]{mathastext}
 
-\newcommand{\printsection}[1]{\normalfont\headerfontlt{{{#1}}}}
-\newcommand{\printsubsection}[1]{\normalfont\headerfontlt\textcolor{darkgray}{{#1}}}
-\newcommand{\printsubsubsection}[1]{\normalfont\headerfontlt{{#1}}}
-\allsectionsfont{\printsection}
-\subsectionfont{\printsection}
-\subsectionfont{\printsubsection}
-\subsubsectionfont{\printsubsubsection}
-
-% operators
-\newcommand{\op}[1]{\textrm{\small\printsubsection{\MakeUppercase{#1}}}\,}
-\newcommand{\opns}[1]{\textrm{\small\printsubsection{\MakeUppercase{#1}}}}
-\newcommand{\opnslc}[1]{\textrm{\small\printsubsection{{#1}}}}
 
 % calculus 
-\newcommand{\Partial}[1]{\partial\hspace{-0.2ex}{#1}}
 \newcommand{\D}[1]{\mathrm{d}#1}
 
 % probability 
@@ -111,12 +151,3 @@
   frame=tlbr,framesep=4pt,framerule=0pt,
   literate={`}{\`}1,
 }
-
-% header/footer
-\renewcommand{\headrulewidth}{0.1pt}
-\renewcommand{\headrule}{\hbox to\headwidth{\color{gray}\leaders\hrule height \headrulewidth\hfill}}
-\renewcommand{\footrulewidth}{0.0pt}
-\topmargin=-0.65in
-\pagestyle{fancy}\fancyhf{} 
-\lhead{\headerfontlt{\textcolor{darkgray}{\AUTHOR\ \textcolor{gray}{$\big/$} \CLASSNAME\ \textcolor{gray}{$\big/$}} \TITLE}}
-\rhead{\headerfontlt{\textcolor{gray}{$\big[$} \thepage\ \textcolor{gray}{$\big/$} \pageref{LastPage} \textcolor{gray}{$\big]$}}}
