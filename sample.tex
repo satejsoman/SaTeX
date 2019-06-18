@@ -1,0 +1,35 @@
+\documentclass[11pt]{article}
+
+\newcommand{\AUTHOR}{Satej Soman}
+\newcommand{\TITLE}{Sample Document}
+\newcommand{\CLASSNAME}{TeX Template}
+
+\input{commons.tex}
+
+\begin{document}
+\section{this is what a section title looks like}
+\subsection{and this is a subsection!}
+\subsubsection{yes, we can go deeper}
+This is what some plain text looks like.
+
+\section{how about some math typesetting?}
+
+\begin{align*}
+\nabla \times \vec{E} = - \frac{\Partial{\vec{B}}}{\Partial{t}} &&
+\op{det} \left( \begin{bmatrix} a & b \\ c & d \end{bmatrix} \right) = ad - bc &&
+\Gamma(z) = \int_0^{\infty} t^{\,z-1} \cdot \op{exp}\left(-t\right) \,\D{t} 
+\end{align*}
+
+\section{here's some typeset code}
+
+\begin{lstlisting}[language=Python]
+def fibonacci(x):
+    if x < 2: 
+        return x 
+    return fibonacci(x - 2) + return fibonacci(x - 1)
+    
+if __name__ == "__main__":
+    print(fibonacci(25))
+\end{lstlisting}
+
+\end{document}
