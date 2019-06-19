@@ -7,7 +7,9 @@
 \input{commons.tex}
 
 \begin{document}
-\textit{this document was compiled by LuaLaTeX.}
+{\centering \textit{this document was compiled using LuaLaTeX.}
+
+}
 \section{this is what a section title looks like}
 \subsection{and this is a subsection!}
 \subsubsection{yes, we can go deeper}
@@ -27,7 +29,7 @@ This is what some plain text looks like.
 def fibonacci(x):
     if x < 2: 
         return x 
-    return fibonacci(x - 2) + return fibonacci(x - 1)
+    return fibonacci(x - 2) + fibonacci(x - 1)
     
 if __name__ == "__main__":
     print(fibonacci(25))
