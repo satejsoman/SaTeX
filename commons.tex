@@ -34,6 +34,8 @@
 % https://tex.stackexchange.com/a/20780
 \usepackage{ifpdf,ifxetex,ifluatex} 
 
+\newcommand{\currentengine}{\LaTeX}
+
 \ifluatex
     \typeout{ *** using compiler: LuaLaTeX *** ^^J}
     % patch \typein
@@ -68,7 +70,7 @@
 	\newcommand{\op}[1]{\textrm{\small\printsubsection{\MakeUppercase{#1}}}\,}
 	\newcommand{\opns}[1]{\textrm{\small\printsubsection{\MakeUppercase{#1}}}}
 	\newcommand{\opnslc}[1]{\textrm{\small\printsubsection{{#1}}}}
-
+	\renewcommand{\currentengine}{\LuaTeX}
 \else
     \typeout{ *** using compiler: LaTeX *** ^^J} 
     \newcommand{\printsection}[1]{\textsf{{#1}}}
@@ -81,6 +83,7 @@
 	\newcommand{\op}[1]{\textsf{\MakeUppercase{#1}}\,}
 	\newcommand{\opns}[1]{\textsf{\MakeUppercase{#1}}}
 	\newcommand{\opnslc}[1]{\textsf{#1}}
+	\renewcommand{\currentengine}{\PDFTeX}
 \fi
 
 % colors
@@ -150,4 +153,11 @@
   tabsize=4,
   frame=tlbr,framesep=4pt,framerule=0pt,
   literate={`}{\`}1,
+}
+
+% make hyperlinks less ugly
+\hypersetup{%
+  colorlinks=false,% hyperlinks will be black
+  linkbordercolor=black,% hyperlink borders will be red
+  pdfborderstyle={/S/U/W 1}% border style will be underline of width 1pt
 }
