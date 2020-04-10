@@ -37,6 +37,7 @@
 \renewcommand{\footrulewidth}{0.0pt}
 \topmargin=-0.65in
 \pagestyle{fancy}\fancyhf{} 
+\setlength{\headheight}{24pt}
 
 % compiler-specific settings
 % https://tex.stackexchange.com/a/20780
@@ -61,8 +62,7 @@
     \usepackage{fontspec}
 	\newfontfamily\headerfontlt{ITC Franklin Gothic Std Book}
 	\newfontfamily\headerfont{ITC Franklin Gothic Std Demi}
-	\usepackage[urw-garamond]{mathdesign}
-	\usepackage{garamondx}
+	\usepackage[garamond]{mathdesign}
 	\usepackage[italic]{mathastext}
 	\newcommand{\printsection}[1]{\normalfont\headerfontlt{{{#1}}}}
 	\newcommand{\printsubsection}[1]{\normalfont\headerfontlt\textcolor{darkgray}{{#1}}}
@@ -81,7 +81,7 @@
     \renewcommand{\currentengine}{\LuaTeX}
     
     \usepackage{fontspec}
-    \setmonofont{Fira Code}[Contextuals=Alternate]
+    \setmonofont[Scale=MatchLowercase]{Fira Code}
     \makeatletter
     \renewcommand*\verbatim@nolig@list{} % Empty the no-ligature list
     \makeatother
