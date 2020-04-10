@@ -4,7 +4,6 @@
 \usepackage{extramarks}
 \usepackage{amsmath}
 \usepackage{amsthm}
-\usepackage{amssymb}
 \usepackage{tikz}
 \usepackage[plain]{algorithm}
 \usepackage{algpseudocode}
@@ -22,6 +21,15 @@
 \usetikzlibrary{matrix}
 \usepackage{listings}
 \usepackage{booktabs}
+\usepackage{dcolumn}
+\usepackage{longtable}
+
+% hyperlinks
+\hypersetup{%
+  colorlinks=false,% hyperlinks will be black
+  linkbordercolor=black,% hyperlink borders will be red
+  pdfborderstyle={/S/U/W 1}% border style will be underline of width 1pt
+}
 
 % header/footer
 \renewcommand{\headrulewidth}{0.1pt}
@@ -70,7 +78,13 @@
 	\newcommand{\op}[1]{\textrm{\small\printsubsection{\MakeUppercase{#1}}}\,}
 	\newcommand{\opns}[1]{\textrm{\small\printsubsection{\MakeUppercase{#1}}}}
 	\newcommand{\opnslc}[1]{\textrm{\small\printsubsection{{#1}}}}
-	\renewcommand{\currentengine}{\LuaTeX}
+    \renewcommand{\currentengine}{\LuaTeX}
+    
+    \usepackage{fontspec}
+    \setmonofont{Fira Code}[Contextuals=Alternate]
+    \makeatletter
+    \renewcommand*\verbatim@nolig@list{} % Empty the no-ligature list
+    \makeatother
 \else
     \typeout{ *** using compiler: LaTeX *** ^^J} 
     \newcommand{\printsection}[1]{\textsf{{#1}}}
